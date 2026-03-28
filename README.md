@@ -1,0 +1,1 @@
+I am a French person who is starting and who wants to improve in gdcript. being faced with a dead end and not being used to understanding nothing in the learning phase I would like help from people who have the time and desire.
