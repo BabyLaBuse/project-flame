@@ -1,0 +1,28 @@
+extends Area2D
+
+@export var force_rebond: float = -900.0
+@export var boost_horizontal: float = 500.0
+@export var max_bonus_speed: float = 10000.0
+
+func _physics_process(_delta):
+	for body in get_overlapping_bodies():
+		if body.name == "joueur":
+			if Input.is_action_just_pressed("saut"):
+				
+				# 🔼 Boost vertical
+				body.velocity.y = force_rebond
+				
+				# ➡️ Direction
+				var direction = sign(body.velocity.x)
+				if direction == 1:
+					direction = 1
+				if direction == 0:
+					direction = 0
+				if direction == -1:
+					direction = -1
+				
+				# 🚀 ACCUMULATION (BONNE MÉTHODE)
+				body.bonusspeed += boost_horizontal * direction
+				
+				# 🧱 Limite du bonus (important)
+				body.bonusspeed = clamp(body.bonusspeed, -max_bonus_speed, max_bonus_speed)
